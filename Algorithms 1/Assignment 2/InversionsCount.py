@@ -3,12 +3,9 @@ Programming Assignment #2
 ==========================
 Count the number of inversions in IntegerArray.txt
 '''
-
 import time
 
-''' Brute force version
-'''
-
+### Brute force version
 def inversions_count_brute_force(a):
     n = len(a)
     inversions = 0
@@ -19,9 +16,7 @@ def inversions_count_brute_force(a):
     return inversions
 
 
-''' Divide and conquer version
-'''
-
+### Divide and conquer version
 def inversions_count(a):
     n = len(a)
 
@@ -63,26 +58,24 @@ def sort_count(a,b):
     
     return c
 
-''' Program
-'''
+
+### Program
 
 # Read the file into a 1-n array
 with open("IntegerArray.txt","r") as f:
-    content = f.readlines()
+    a = [int(x) for x in f.readlines()]
 
-a = [x.strip() for x in content]
+    # Run the brute-force version - ran approx. in 423 secs
+    #start_time = time.time()
+    #print("Brute Force")
+    #print("Inversions={}".format(inversions_count_brute_force(a)))
+    #print("--- %s seconds ---" % (time.time() - start_time))
+    #print("")
 
-# Run the brute-force version - ran approx. in 423 secs
-#start_time = time.time()
-#print("inversions brute-force={}".format(inversions_count_brute_force(a)))
-#print("--- %s seconds ---" % (time.time() - start_time))
-
-
-# Run the brute-force version - ran approx in 0.56 sec ! AMAAAAAAZZING !
-start_time = time.time()
-inversions = 0
-inversions_count(a)
-print("inversions={}".format(inversions))
-print("--- %s seconds ---" % (time.time() - start_time))
-
-
+    # Run the divide and conquer version - ran approx in 0.56 sec ! AMAAAAAAZZING !
+    start_time = time.time()
+    inversions = 0
+    inversions_count(a)
+    print("Divide and Conquer")
+    print("Inversions={}".format(inversions))
+    print("--- %s seconds ---" % (time.time() - start_time))
