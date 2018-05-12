@@ -56,6 +56,8 @@ def sort_count(a,b):
     else:
         c.extend(a[i:])
     
+    print(inversions)
+
     return c
 
 
