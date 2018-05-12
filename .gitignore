@@ -4,3 +4,5 @@
 **/obj
 **/bin
 **/.vscode
+**/launch.json
+**/task.json
