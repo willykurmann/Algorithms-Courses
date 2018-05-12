@@ -1,3 +1,6 @@
 .virtualenv
 **/.DS_Store
 **/__pycache__
+**/obj
+**/bin
+**/.vscode
