@@ -6,3 +6,6 @@ Karatsuba Multiplication
 
 ## Programming Assignment #2
 Inversions Count
+
+## Programming Assignment #3
+QuickSort
