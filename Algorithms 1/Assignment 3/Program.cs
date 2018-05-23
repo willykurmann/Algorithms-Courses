@@ -34,6 +34,12 @@ namespace Assignment_3
             QuickSortUsingLastItem(a2, 0, a2.Count() - 1);
             System.Console.WriteLine($"QuickSort using last item executed in {sw.ElapsedMilliseconds}ms,  comparisons={_comparisons}");
 
+            sw = Stopwatch.StartNew();
+            _comparisons = 0;
+            int[] a3 = (int[])a.Clone();
+            QuickSortUsingMiddleItem(a3, 0, a3.Count() - 1);
+            System.Console.WriteLine($"QuickSort using middle item executed in {sw.ElapsedMilliseconds}ms,  comparisons={_comparisons}");
+
 
             for (int i = 0; i < a.Count(); i++)
                 if (a1[i] != b[i])
@@ -42,6 +48,10 @@ namespace Assignment_3
             for (int i = 0; i < a.Count(); i++)
                 if (a2[i] != b[i])
                     throw new Exception("Quicksort using last item failed");
+
+            for (int i = 0; i < a.Count(); i++)
+                if (a3[i] != b[i])
+                    throw new Exception("Quicksort using middle item failed");
         }
 
         private static void QuickSortUsingFirstItem(int[] a, int left, int right)
@@ -75,7 +85,7 @@ namespace Assignment_3
             QuickSortUsingFirstItem(a, i, right);
         }
 
-         private static void QuickSortUsingLastItem(int[] a, int left, int right)
+        private static void QuickSortUsingLastItem(int[] a, int left, int right)
         {
             int m = (right - left) + 1;
 
@@ -108,6 +118,47 @@ namespace Assignment_3
             QuickSortUsingLastItem(a, left, i - 2);
             QuickSortUsingLastItem(a, i, right);
         }
-        
+
+        private static void QuickSortUsingMiddleItem(int[] a, int left, int right)
+        {
+            int m = (right - left) + 1;
+
+            if (m == 0 || m == 1)
+                return;
+
+            _comparisons += m - 1;
+
+            // Find the middle index of the array
+            int n = m % 2 == 0 ? m / 2 : (m + 1) / 2;
+            int middle = left + n - 1;
+
+            // Get the median of three
+            int median = Math.Max(Math.Min(left, middle), Math.Min(Math.Max(left, middle), right));
+
+            // Swap pivot and first item
+            int p = a[median];
+            a[median] = a[left];
+            a[left] = p;
+
+            int i = left + 1;
+
+            for (int j = i; j <= right; j++)
+            {
+                if (a[j] < p)
+                {
+                    int swap = a[j];
+                    a[j] = a[i];
+                    a[i] = swap;
+                    i = i + 1;
+                }
+            }
+
+            int swapL = a[left];
+            a[left] = a[i - 1];
+            a[i - 1] = swapL;
+
+            QuickSortUsingMiddleItem(a, left, i - 2);
+            QuickSortUsingMiddleItem(a, i, right);
+        }
     }
 }
